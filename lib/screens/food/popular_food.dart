@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/colors.dart';
+import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_column.dart';
 import 'package:flutter_application_1/widgets/app_icon.dart';
+import 'package:flutter_application_1/widgets/big_text.dart';
+import 'package:flutter_application_1/widgets/expandable_text.dart';
+import 'package:flutter_application_1/widgets/small_text.dart';
+import 'package:gap/gap.dart';
 
 class PopularFood extends StatelessWidget {
 const PopularFood({ Key? key }) : super(key: key);
@@ -8,6 +14,7 @@ const PopularFood({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Positioned(
@@ -52,10 +59,72 @@ const PopularFood({ Key? key }) : super(key: key);
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
               ),
-              child: const AppColumn(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AppColumn(text: 'Chinese Side'),
+                  Gap(Dimensions.height20),
+                  BigText(text: 'Introduce'),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableText(
+                        text: 'Chicken marinated in a spiced yoghurt is placed in a large pot' * 27
+                      )
+                    )
+                  )
+                ],
+              ),
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 110,
+        padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.width20,
+          vertical: Dimensions.height15,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.buttonBGColor,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(30),
+          )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: Dimensions.width10,
+                vertical: Dimensions.height12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.remove, color: AppColors.signColor,),
+                  Gap(Dimensions.width10),
+                  BigText(text: '0'),
+                  Gap(Dimensions.width10),
+                  Icon(Icons.add, color: AppColors.signColor,)
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: Dimensions.width10,
+                vertical: Dimensions.height12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: AppColors.mainColor,
+              ),
+              child: BigText(text: '\$10 | Add to cart', color: Colors.white,),
+            ),
+          ],
+        ),
       ),
     );
   }

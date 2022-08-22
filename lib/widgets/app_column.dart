@@ -7,14 +7,15 @@ import 'package:flutter_application_1/widgets/small_text.dart';
 import 'package:gap/gap.dart';
 
 class AppColumn extends StatelessWidget {
-  const AppColumn({Key? key}) : super(key: key);
+  final String text;
+  const AppColumn({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BigText(text: 'Chinese Side'),
+        BigText(text: text),
         const Gap(7),
         Row(
           children: [
