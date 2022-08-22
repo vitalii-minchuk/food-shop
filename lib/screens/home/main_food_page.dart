@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home/food_page_body.dart';
+import 'package:flutter_application_1/screens/home/food_page_body.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/small_text.dart';
@@ -34,7 +34,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         text: 'Odessa',
                         color: AppColors.mainBlackColor,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_drop_down_rounded
                       )
                     ],
@@ -57,7 +57,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ],
           ),
         ),
-        const FoodPageBody(),
+        const Expanded(
+          child: SingleChildScrollView(child: FoodPageBody())
+        ),
       ]),
     );
   }

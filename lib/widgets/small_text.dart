@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/dimensions.dart';
 
 class SmallText extends StatelessWidget {
   final String text;
@@ -10,7 +11,7 @@ class SmallText extends StatelessWidget {
     Key? key,
     required this.text,
     this.color = const Color(0xFFccc7c5),
-    this.size = 12,
+    this.size = 0,
     this.height = 1.2,
   }) : super(key: key);
 
@@ -20,7 +21,7 @@ class SmallText extends StatelessWidget {
       text,
       style: TextStyle(
         color: color,
-        fontSize: size,
+        fontSize: size == 0 ? Dimensions.height12 : size,
         height: height,
       )
     );
