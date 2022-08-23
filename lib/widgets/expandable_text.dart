@@ -36,8 +36,8 @@ class _ExpandableTextState extends State<ExpandableText> {
       child: secondHalf.isEmpty ? SmallText(text: firstHalf) : Column(
         children: [
           SmallText(height: 1.8, text: hiddenText
-            ? (firstHalf + '...')
-            : (firstHalf = secondHalf)
+            ? ('$firstHalf...')
+            : (firstHalf + secondHalf)
           ),
           InkWell(
             onTap: () {
@@ -48,7 +48,12 @@ class _ExpandableTextState extends State<ExpandableText> {
             child: Row(
               children: [
                 SmallText(text: 'show more', color: AppColors.mainColor,),
-                Icon(Icons.arrow_drop_down, color: AppColors.mainColor,)
+                Icon(
+                  hiddenText
+                    ? Icons.arrow_drop_down
+                    : Icons.arrow_drop_up,
+                  color: AppColors.mainColor,
+                )
               ],
             ),
           )

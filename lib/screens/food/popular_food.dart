@@ -9,10 +9,10 @@ import 'package:flutter_application_1/widgets/small_text.dart';
 import 'package:gap/gap.dart';
 
 class PopularFood extends StatelessWidget {
-const PopularFood({ Key? key }) : super(key: key);
+  const PopularFood({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,13 +24,9 @@ const PopularFood({ Key? key }) : super(key: key);
               width: double.maxFinite,
               height: 350,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/images/food_1.jpg'
-                  )
-                )
-              ),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/food_1.jpg'))),
             ),
           ),
           Positioned(
@@ -65,13 +61,11 @@ const PopularFood({ Key? key }) : super(key: key);
                   const AppColumn(text: 'Chinese Side'),
                   Gap(Dimensions.height20),
                   BigText(text: 'Introduce'),
-                  Expanded(
-                    child: SingleChildScrollView(
+                  SingleChildScrollView(
                       child: ExpandableText(
-                        text: 'Chicken marinated in a spiced yoghurt is placed in a large pot' * 27
-                      )
-                    )
-                  )
+                          text:
+                              'Chicken marinated in a spiced yoghurt is placed in a large pot' *
+                                  27)),
                 ],
               ),
             ),
@@ -85,11 +79,10 @@ const PopularFood({ Key? key }) : super(key: key);
           vertical: Dimensions.height15,
         ),
         decoration: BoxDecoration(
-          color: AppColors.buttonBGColor,
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(30),
-          )
-        ),
+            color: AppColors.buttonBGColor,
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(30),
+            )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -104,24 +97,33 @@ const PopularFood({ Key? key }) : super(key: key);
               ),
               child: Row(
                 children: [
-                  Icon(Icons.remove, color: AppColors.signColor,),
+                  Icon(
+                    Icons.remove,
+                    color: AppColors.signColor,
+                  ),
                   Gap(Dimensions.width10),
                   BigText(text: '0'),
                   Gap(Dimensions.width10),
-                  Icon(Icons.add, color: AppColors.signColor,)
+                  Icon(
+                    Icons.add,
+                    color: AppColors.signColor,
+                  )
                 ],
               ),
             ),
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.width10,
+                horizontal: Dimensions.width20,
                 vertical: Dimensions.height12,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: AppColors.mainColor,
               ),
-              child: BigText(text: '\$10 | Add to cart', color: Colors.white,),
+              child: BigText(
+                text: '\$10 | Add to cart',
+                color: Colors.white,
+              ),
             ),
           ],
         ),
