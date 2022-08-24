@@ -1,7 +1,8 @@
+import 'package:flutter_application_1/utils/constants.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
-  late String token ="";
+  late String token;
   final String appBaseUrl;
   
   late Map<String, String> _mainHeaders;
@@ -9,6 +10,7 @@ class ApiClient extends GetConnect implements GetxService {
   ApiClient({required this.appBaseUrl}) {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 20);
+    token = AppConstants.TOKEN;
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',
