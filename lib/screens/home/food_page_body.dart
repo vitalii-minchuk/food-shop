@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
 import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
 import 'package:flutter_application_1/models/products_model.dart';
+import 'package:flutter_application_1/routes/routeHelper.dart';
+import 'package:flutter_application_1/screens/food/popular_food.dart';
 import 'package:flutter_application_1/utils/colors.dart';
 import 'package:flutter_application_1/utils/constants.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
@@ -49,13 +51,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimensions.pageView,
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: popularProducts.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        return _buildPageItem(position,
-                            popularProducts.popularProductList[position]);
-                      }),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.popularFood);
+                    },
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemCount: popularProducts.popularProductList.length,
+                        itemBuilder: (context, position) {
+                          return _buildPageItem(position,
+                              popularProducts.popularProductList[position]);
+                        }),
+                  ),
                 )
               : SizedBox(
                   height: Dimensions.pageView,
@@ -121,7 +128,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
-                                        '${AppConstants.BASE_URL}/uploads/${recommendedProduct.recommendedProductList[index].img}'))),
+                                        '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${recommendedProduct.recommendedProductList[index].img}'))),
                           ),
                           Expanded(
                             child: Container(
@@ -140,7 +147,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     BigText(
-                                        text: 'Nutritious fruit meal in China'),
+                                        text: '${recommendedProduct.recommendedProductList[index].name}'),
                                     SmallText(
                                         text: 'With chinese characteristics'),
                                     FittedBox(
@@ -224,7 +231,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                      '${AppConstants.BASE_URL}/uploads/${popularProduct.img!}'))),
+                      '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${popularProduct.img!}'))),
         ),
         Align(
           alignment: Alignment.bottomCenter,
