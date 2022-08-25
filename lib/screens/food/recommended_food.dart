@@ -1,25 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
+import 'package:flutter_application_1/routes/routeHelper.dart';
 import 'package:flutter_application_1/utils/colors.dart';
+import 'package:flutter_application_1/utils/constants.dart';
 import 'package:flutter_application_1/utils/dimensions.dart';
 import 'package:flutter_application_1/widgets/app_icon.dart';
 import 'package:flutter_application_1/widgets/big_text.dart';
 import 'package:flutter_application_1/widgets/expandable_text.dart';
+import 'package:get/get.dart';
 
 class RecommendedFood extends StatelessWidget {
-const RecommendedFood({ Key? key }) : super(key: key);
+  final int pageId;
+  const RecommendedFood({ Key? key, required this.pageId }) : super(key: key);
 
   @override
   Widget build(BuildContext context){
+    var product  = Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
+            automaticallyImplyLeading: false,
             toolbarHeight: 90,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.clear),
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.initial);
+                  },
+                  child: AppIcon(icon: Icons.clear)
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -36,14 +48,14 @@ const RecommendedFood({ Key? key }) : super(key: key);
                     top: Radius.circular(30)
                   )
                 ),
-                child: Center(child: BigText(text: 'Chinese food'))
+                child: Center(child: BigText(text: product.name))
               ),
             ),
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/food_4.jpg',
+              background: Image.network(
+                '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${product.img}',
                 fit: BoxFit.cover,
                 width: double.maxFinite,
               ),
@@ -80,7 +92,7 @@ const RecommendedFood({ Key? key }) : super(key: key);
                   size: 50,
                   bgColor: AppColors.mainColor,
                 ),
-                BigText(text: '\$12.88 X 0'),
+                BigText(text: '\$ ${product.price} X 0'),
                 AppIcon(
                   icon: Icons.add,
                   iconColor: Colors.white,
