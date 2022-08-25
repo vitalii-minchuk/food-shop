@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/popular_product_controller.dart';
+import 'package:flutter_application_1/controllers/recommended_product_controller.dart';
 import 'package:flutter_application_1/screens/food/popular_food.dart';
 import 'package:flutter_application_1/screens/food/recommended_food.dart';
 import 'package:flutter_application_1/screens/home/main_food_page.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
+    Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       title: 'Flutter app',
       debugShowCheckedModeBanner: false,
